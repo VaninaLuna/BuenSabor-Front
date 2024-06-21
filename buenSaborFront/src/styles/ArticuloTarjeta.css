@@ -1,0 +1,47 @@
+.iconoMasMenos {
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    color:#e7a17a;
+    text-decoration: none;
+  }
+
+  .iconoMasMenos:hover {
+    color: #d36a32;
+  }
+ 
+  .colorFondoBlanco {
+    background-color: transparent; /*#252b3608; */
+    border-color: transparent;
+    text-align: center;
+    color: black;
+
+    --cui-btn-color: transparent;
+    --cui-btn-bg: #e7a17a;
+    --cui-btn-border-color: transparent;
+    --cui-btn-hover-color: #aaaaaa8e;
+    --cui-btn-hover-bg: #aaaaaa8e;
+    --cui-btn-hover-border-color: #aaaaaa8e;
+    --cui-btn-focus-shadow-rgb: 113, 111, 220;
+    --cui-btn-active-color: #fff;
+    --cui-btn-active-bg: #aaaaaa;
+    --cui-btn-active-border-color: #aaaaaa;
+    --cui-btn-active-shadow: inset 0 3px 5px rgba(8, 10, 12, 0.125);
+    --cui-btn-disabled-color: #fff;
+    --cui-btn-disabled-bg: #e7a17a;
+    --cui-btn-disabled-border-color: #e7a17a;
+  }
+  
+  .card-img {
+    flex: 0 0 auto;
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 200px;
+    object-fit: contain;
+  }
+  
+  .articulo:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }

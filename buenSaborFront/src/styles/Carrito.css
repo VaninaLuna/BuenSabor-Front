@@ -1,0 +1,43 @@
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    color: whitesmoke;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  
+  .cart li {
+    border-bottom: 1px solid #444;
+    padding-bottom: 16px;
+  }
+
+  .cart-img {
+  max-width: 80px;
+  object-fit: contain;
+  }
+  
+  .cart ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style-type: none; /* Esto elimina los puntos */
+        
+  }
+  
+  .cart footer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cart footer button {
+    background-color: #e7a17a;
+    padding: 1px 8px 1px 8px;
+  }
+  
