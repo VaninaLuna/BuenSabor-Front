@@ -20,9 +20,9 @@ export const ModalCategorias: React.FC<ModalProps> = ({ onlyShowCategorias, sele
 
     useEffect(() => {
         if (onlyShowCategorias && selectedSucursal.categorias) {
-            setCategorias(renderCategorias(selectedSucursal.categorias))
+            setCategorias(selectedSucursal.categorias)
         } else {
-            if (selectedSucursal.categorias) setCategoriasSeleccionadas(renderCategorias(selectedSucursal.categorias))
+            if (selectedSucursal.categorias) setCategoriasSeleccionadas(selectedSucursal.categorias)
             getArbolCategorias().then(c => setCategorias(renderCategorias(c)))
         }
     }, [onlyShowCategorias, selectedSucursal]);
@@ -47,7 +47,7 @@ export const ModalCategorias: React.FC<ModalProps> = ({ onlyShowCategorias, sele
     const renderCategorias = (categorias: Categoria[]): Categoria[] => {
         const todasCategorias: Categoria[] = [];
         const agregarCategorias = (categorias: Categoria[]) => {
-            categorias.forEach(categoria => {
+            categorias.filter(c => !c.eliminado).forEach(categoria => {
                 todasCategorias.push(categoria);
                 if (categoria.subCategorias) {
                     agregarCategorias(categoria.subCategorias);
@@ -77,7 +77,6 @@ export const ModalCategorias: React.FC<ModalProps> = ({ onlyShowCategorias, sele
         return categoriasSeleccionadas.some(c => c.id === categoriaId);
     };
 
-
     return (
         <Modal show={showModalCategorias} onHide={handleCloseAndClear}
             size="xl" style={{ background: 'rgba(0, 0, 0, 0.5)' }}
@@ -102,7 +101,6 @@ export const ModalCategorias: React.FC<ModalProps> = ({ onlyShowCategorias, sele
                             {!onlyShowCategorias && <th style={{ maxWidth: "100px" }}>Seleccionar</th>}
                             <th>Codigo</th>
                             <th>Denominacion</th>
-                            <th>Eliminada</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -115,7 +113,6 @@ export const ModalCategorias: React.FC<ModalProps> = ({ onlyShowCategorias, sele
                                 </td>}
                                 <td>{c.codigo}</td>
                                 <td>{c.denominacion}</td>
-                                <td>{c.eliminado ? "Si" : "No"}</td>
                             </tr>
                         )}
                     </tbody>
