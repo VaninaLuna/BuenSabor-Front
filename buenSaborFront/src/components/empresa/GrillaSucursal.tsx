@@ -20,18 +20,18 @@ export function GrillaSucursal() {
     const [filtro, setFiltro] = useState('');
 
     const [showModalCategorias, setShowModalCategorias] = useState(false);
-    const [showModalAgregarArticulos, setShowModalAgregarArticulos] = useState(false);
+    const [showModalAgregarPromociones, setShowModalAgregarPromociones] = useState(false);
 
     const getListadoSucursales = async () => {
         const datos: Sucursal[] = await getSucursales();
         setSucursales(datos);
     };
 
-    // const handleOpenCreate = () => {
-    //     setShowModal(true);
-    //     setEditing(false);
-    //     setSelectedId(null);
-    // };
+    const handleOpenCreate = () => {
+        setShowModal(true);
+        setEditing(false);
+        setSelectedId(null);
+    };
 
     const handleOpenEdit = () => {
         setShowModal(true);
@@ -43,7 +43,7 @@ export function GrillaSucursal() {
         setEditing(false);
         setSelectedId(null);
         setShowModalCategorias(false);
-        setShowModalAgregarArticulos(false);
+        setShowModalAgregarPromociones(false);
     };
 
     const handleShowCategorias = () => {
@@ -51,7 +51,7 @@ export function GrillaSucursal() {
     };
 
     const handleShowPromociones = () => {
-        setShowModalAgregarArticulos(true);
+        setShowModalAgregarPromociones(true);
     };
 
     const deleteSucursal = async (idSucursal: number) => {
@@ -75,7 +75,7 @@ export function GrillaSucursal() {
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'top', flexDirection: 'column', alignItems: 'center', minHeight: '100vh' }}>
-                <h1 style={{ marginTop: '20px', color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '15px 15px' }}>Sucursales</h1>
+                <h1 style={{ marginTop: '20px', color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', borderRadius: '15px', padding: '15px 15px' }}>Sucursales</h1>
                 <ModalSucursal
                     handleCloseSucursal={handleClose}
                     showModal={showModal}
@@ -93,7 +93,7 @@ export function GrillaSucursal() {
                 <ModalAgregarPromociones
                     onlyShowPromociones={onlyShowPromociones}
                     selectedSucursal={selectedSucursal}
-                    showModalAgregarPromociones={showModalAgregarArticulos}
+                    showModalAgregarPromociones={showModalAgregarPromociones}
                     handleClose={handleClose}
                 />
                 <br />
@@ -104,36 +104,30 @@ export function GrillaSucursal() {
                         onChange={handleFilterChange}
                         style={{ margin: 20, width: '300px', height: '50px' }}
                     />
-                    {/* <Button size="lg" style={{ margin: 20, backgroundColor: '#EE7F46', border: '#EE7F46' }} onClick={handleOpenCreate}>
+                    <Button size="lg" style={{ margin: 20, backgroundColor: '#EE7F46', border: '#EE7F46' }} onClick={handleOpenCreate}>
                         Crear Sucursal
-                    </Button> */}
+                    </Button>
                 </div>
 
-                <Table striped bordered hover size="sm">
+                <Table striped bordered hover size="xl" responsive>
                     <thead>
                         <tr>
-                            <th style={{ maxWidth: "80px" }}>ID</th>
-                            <th>nombre</th>
-                            <th style={{ minWidth: "150px" }}>Horario Apertura</th>
-                            <th>Horario Cierre</th>
-                            <th>Casa Matriz</th>
-                            <th>Localidad</th>
-                            <th>Provincia</th>
-                            <th style={{ width: "180px" }}>Categoria</th>
-                            <th style={{ width: "180px" }}>Promociones</th>
-                            <th style={{ width: "200px" }}>Opciones</th>
+                            <th style={{ width: "300px" }}>Nombre</th>
+                            <th style={{ width: "200px" }}>Horario</th>
+                            <th style={{ width: "150px" }}>Casa Matriz</th>
+                            <th style={{ width: "250px" }}>Ubicacion</th>
+                            <th style={{ width: "200px" }}>Categoria</th>
+                            <th style={{ width: "200px" }}>Promociones</th>
+                            <th style={{ width: "300px" }}>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredSucursales.map((sucursal: Sucursal, index) =>
                             <tr key={index}>
-                                <td>{sucursal.id}</td>
                                 <td>{sucursal.nombre}</td>
-                                <td>{sucursal.horarioApertura}</td>
-                                <td>{sucursal.horarioCierre}</td>
+                                <td>{sucursal.horarioApertura} - {sucursal.horarioCierre}</td>
                                 <td>{sucursal.casaMatriz ? "Si" : "No"}</td>
-                                <td>{sucursal.domicilio.localidad.nombre}</td>
-                                <td>{sucursal.domicilio.localidad.provincia.nombre}</td>
+                                <td>{sucursal.domicilio.localidad.nombre} - {sucursal.domicilio.localidad.provincia.nombre}</td>
                                 <td>
                                     <Button variant="outline-success" style={{ maxHeight: "40px", marginRight: '10px' }}
                                         onClick={() => { setSelectedSucursal(sucursal); handleShowCategorias(); setOnlyShowCategorias(false) }}>Agregar</Button>
@@ -148,7 +142,7 @@ export function GrillaSucursal() {
                                 </td>
                                 <td>
                                     <Button variant="outline-warning" style={{ maxHeight: "40px", marginRight: '10px' }}
-                                        onClick={() => { setSelectedId(sucursal.id); setSelectedIdEmpresa(sucursal.empresa.id); handleOpenEdit(); }}>Modificar</Button>
+                                        onClick={() => { setSelectedId(sucursal.id); setSelectedIdEmpresa(1); handleOpenEdit(); }}>Modificar</Button>
                                     <Button variant="outline-danger" style={{ maxHeight: "40px" }} onClick={() => deleteSucursal(sucursal.id)}>Eliminar</Button>
                                 </td>
                             </tr>
