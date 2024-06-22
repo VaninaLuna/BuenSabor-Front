@@ -61,13 +61,13 @@ export function SidebarAdmin({ rolName }: { rolName: RolName }) {
                     toggler={
                         <>
                             <CIcon customClassName="nav-icon" icon={cilBuilding} />
-                            Empresas
+                            Mi Empresa
                         </>}
                 >
                     <CNavItem>
-                        <NavLink to="/empresas" className="nav-link">
+                        <NavLink to="/profileEmpresa" className="nav-link">
                             <span className="nav-icon"><span className="nav-icon-bullet"></span></span>
-                            Empresas
+                            Empresa
                         </NavLink>
                     </CNavItem>
                     <CNavItem>
@@ -200,7 +200,7 @@ export function SidebarAdmin({ rolName }: { rolName: RolName }) {
                     :
                     <>
                         {
-                            rolName === RolName.COCINERO ?
+                            (rolName === RolName.COCINERO || rolName === RolName.DELIVERY) ?
                                 <CNavItem>
                                     <NavLink to="/pedidos" className="nav-link">
                                         <CIcon customClassName="nav-icon" icon={cilBasket} />
