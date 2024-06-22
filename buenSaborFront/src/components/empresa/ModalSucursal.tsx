@@ -153,6 +153,10 @@ export const ModalSucursal: React.FC<ModalProps> = ({ showModal, handleCloseSucu
             setTxtValidacion("Debe ingresar una horario de cierre");
             return;
         }
+        if (sucursal?.url === undefined || sucursal.url === "") {
+            setTxtValidacion("Debe ingresar una imagen");
+            return;
+        }
 
         const empresa = await getEmpresaPorID(selectedIdEmpresa)
         const sucursalActualizado = { ...sucursal };
@@ -190,10 +194,20 @@ export const ModalSucursal: React.FC<ModalProps> = ({ showModal, handleCloseSucu
 
             <Modal.Body>
                 <Form>
-                    <Form.Group className="mb-3">
-                        <Form.Label>nombre</Form.Label>
-                        <Form.Control type="text" name="nombre" value={sucursal?.nombre} onChange={handleInputChange} />
-                    </Form.Group>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Nombre</Form.Label>
+                                <Form.Control type="text" name="nombre" value={sucursal?.nombre} onChange={handleInputChange} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Url de la Imagen</Form.Label>
+                                <Form.Control type="text" name="imagen" value={sucursal?.url} onChange={handleInputChange} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3">
@@ -203,7 +217,7 @@ export const ModalSucursal: React.FC<ModalProps> = ({ showModal, handleCloseSucu
                         </Col>
                         <Col>
                             <Form.Group className="mb-3">
-                                <Form.Label>Horario de cierre</Form.Label>
+                                <Form.Label>Horario de Cierre</Form.Label>
                                 <Form.Control type="time" name="horarioCierre" value={sucursal?.horarioCierre} onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
@@ -218,6 +232,7 @@ export const ModalSucursal: React.FC<ModalProps> = ({ showModal, handleCloseSucu
                             onChange={handleInputChange}
                         />
                     </Form.Group>
+
 
                     <Accordion defaultActiveKey="0">
                         <Accordion.Item eventKey="1">
@@ -284,6 +299,8 @@ export const ModalSucursal: React.FC<ModalProps> = ({ showModal, handleCloseSucu
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>
+
+
                     {/* <Row>
                         <Col>
                             <Form.Group className="mb-3 mt-3">
