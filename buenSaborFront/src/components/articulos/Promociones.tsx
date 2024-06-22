@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Image, Table } from "react-bootstrap";
 import { ModalPromociones } from "./ModalPromociones";
 import Promocion from "../../models/Promocion";
 import { deletePromocionPorID, getPromociones } from "../../services/PromocionApi";
@@ -71,6 +71,7 @@ export function Promociones() {
                 <Table striped bordered hover size="sm">
                     <thead>
                         <tr>
+                            <th>Imagen</th>
                             <th>Denominacion</th>
                             <th>Fecha Desde</th>
                             <th>Fecha Hasta</th>
@@ -85,6 +86,11 @@ export function Promociones() {
                     <tbody style={{ background: "whitesmoke" }}>
                         {promociones.map((promocion: Promocion, index) =>
                             <tr key={index}>
+                                <td>{promocion.imagenes && promocion.imagenes[0] ?
+                                    <Image src={promocion.imagenes[0].url}
+                                        alt={promocion.denominacion} style={{ height: "50px", width: "50px", objectFit: 'cover' }} rounded />
+                                    : 'No image'
+                                }</td>
                                 <td>{promocion.denominacion}</td>
                                 <td>{promocion.fechaDesde}</td>
                                 <td>{promocion.fechaHasta}</td>

@@ -56,7 +56,7 @@ export async function savePromocion(promocion?: Promocion) {
 
 //DELETE
 export async function deletePromocionPorID(id: number) {
-    const DELETE_INSTRUMENTO_ENDPOINT = `http://localhost:9000/unidadMedida/${id}`
+    const DELETE_INSTRUMENTO_ENDPOINT = `http://localhost:9000/promociones/${id}`
 
     try {
         const response = await fetch(DELETE_INSTRUMENTO_ENDPOINT, {

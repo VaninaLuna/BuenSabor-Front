@@ -20,6 +20,7 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
     const [promocion, setPromocion] = useState<Promocion>(new Promocion());
     const [txtValidacion, setTxtValidacion] = useState<string>("");
     const [tipoPromocion] = useState<string[]>(["HappyHour", "Promocion"])
+    const [imagenes, setImagenes] = useState<string[]>(['']);
 
     const [showModalAgregar, setShowModalAgregar] = useState(false);
 
@@ -32,14 +33,17 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
     useEffect(() => {
         if (!selectedId) {
             setPromocion(new Promocion())
+            setImagenes(['']);
         } else {
             getPromocionPorID(selectedId)
-                .then(data =>
+                .then(data => {
                     setPromocion({
                         ...data,
                         fechaDesde: moment(data.fechaDesde, 'DD/MM/YYYY').format('YYYY-MM-DD'),
                         fechaHasta: moment(data.fechaHasta, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-                    }))
+                    })
+                    setImagenes(data.imagenes.map(img => img.url));
+                })
                 .catch(e => console.error(e));
         }
     }, [selectedId])
@@ -104,10 +108,13 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
 
         if (!handleValidaciones()) return;
 
-        const promocionFormatted = {
+        const nuevasImagenes = imagenes.map((url) => ({ id: 0, url }));
+
+        const promocionFormatted: Promocion = {
             ...promocion,
             fechaDesde: moment(promocion.fechaDesde).format('DD/MM/YYYY'),
             fechaHasta: moment(promocion.fechaHasta).format('DD/MM/YYYY'),
+            imagenes: nuevasImagenes
         };
 
         console.log(JSON.stringify(promocionFormatted));
@@ -152,6 +159,28 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
 
     const agregarArticuloModal = () => {
         setShowModalAgregar(true);
+    };
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>, index: number) => {
+        const newImagenes = [...imagenes];
+        newImagenes[index] = e.target.value;
+        setImagenes(newImagenes);
+        setTxtValidacion("");
+    };
+
+    const handleAddImage = () => {
+        setImagenes([...imagenes, '']);
+    };
+
+    const handleRemoveImagen = (index: number) => {
+        if (index > 0) {
+            setImagenes(prevState => {
+                const nuevasImagenes = [...prevState];
+                nuevasImagenes.splice(index, 1); // Eliminar las imagenes en el índice especificado
+                return nuevasImagenes;
+            });
+        }
+
     };
 
 
@@ -251,7 +280,24 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
                             </Col>
                         </Row>
                     ))}
-                    <Button variant="secondary" style={{ marginBottom: '10px' }} onClick={agregarArticuloModal}>Agregar Insumo</Button>
+                    <Button variant="secondary" style={{ marginBottom: '10px' }} onClick={agregarArticuloModal}>Agregar Articulo</Button>
+                    {imagenes.map((imagen, index) => (
+                        <Row key={index}>
+                            <Form.Group as={Col} className="mb-3">
+                                <Form.Label>Agregar URL de la Imagen {index + 1}</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name={`urlImagen${index}`}
+                                    value={imagen}
+                                    onChange={e => handleImageChange(e, index)}
+                                />
+                            </Form.Group>
+                            <Col xs="auto">
+                                <Button variant="danger" style={{ marginTop: '32px' }} onClick={() => handleRemoveImagen(index)}>X</Button>
+                            </Col>
+                        </Row>
+                    ))}
+                    <Button variant="secondary" onClick={handleAddImage}>Agregar otra imagen</Button>
                     <div>
                         <p style={{ color: 'red', lineHeight: 5, padding: 5 }}>{txtValidacion}</p>
                     </div>
