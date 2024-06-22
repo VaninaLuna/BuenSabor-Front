@@ -60,10 +60,10 @@ export const App = () => {
                         <Route path="/estadisticas" element={<Estadisticas />} />
                     </Route>
                     {/* ARTICULOS */}
-                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO]} />}>
+                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO, RolName.DELIVERY]} />}>
                         <Route path="/insumos" element={<GrillaArticuloInsumo />} />
                     </Route>
-                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO]} />}>
+                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO, RolName.DELIVERY]} />}>
                         <Route path="/manufacturados" element={<GrillaArticuloManufacturado />} />
                     </Route>
                     <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO]} />}>
@@ -72,11 +72,11 @@ export const App = () => {
                     <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO]} />}>
                         <Route path="/unidadMedida" element={<GrillaUnidadMedida />} />
                     </Route>
-                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO, RolName.CLIENTE]} />}>
+                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO, RolName.DELIVERY, RolName.CLIENTE]} />}>
                         <Route path="/pedidos" element={<GrillaPedido />} />
                     </Route>
                     {/* FACTURACION */}
-                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO, RolName.CLIENTE]} />}>
+                    <Route element={<RolUsuario roles={[RolName.ADMIN, RolName.CAJERO, RolName.COCINERO, RolName.DELIVERY, RolName.CLIENTE]} />}>
                         <Route path="/facturacion" element={<GrillaFactura />} />
                     </Route>
                     <Route element={<RolUsuario roles={[RolName.ADMIN]} />}>
