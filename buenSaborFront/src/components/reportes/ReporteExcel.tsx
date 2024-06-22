@@ -37,10 +37,10 @@ const ReporteExcel = () => {
     return (
         <>
             <div className="d-flex justify-content-center">
-                <h2 style={{ alignSelf: "center", color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '15px 15px' }}>Generar Reporte De Pedidos En Excel</h2>
+                <h2 style={{ alignSelf: "center", color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', borderRadius: '15px', padding: '15px 15px' }}>Generar Reporte De Pedidos En Excel</h2>
             </div>
             <div className="d-flex flex-column w-50  m-auto"
-                style={{ minHeight: '35vh', backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: "15px" }}>
+                style={{ minHeight: '35vh', backgroundColor: 'rgba(0, 0, 0, 0.8)', borderRadius: '15px', padding: "15px" }}>
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">

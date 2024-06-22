@@ -115,7 +115,7 @@ export function GrillaArticuloManufacturado() {
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'top', flexDirection: 'column', alignItems: 'center', minHeight: '100vh' }}>
-                <h1 style={{ marginTop: '20px', color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '15px 15px' }}>{eliminados ? "Articulos Manufacturados Eliminados" : "Articulos Manufacturados"}</h1>
+                <h1 style={{ marginTop: '20px', color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', borderRadius: '15px', padding: '15px 15px' }}>{eliminados ? "Articulos Manufacturados Eliminados" : "Articulos Manufacturados"}</h1>
 
                 <ModalArticuloManufacturado
                     handleClose={handleClose}
@@ -188,7 +188,9 @@ export function GrillaArticuloManufacturado() {
                                 </td>
                                 <td>
                                     {
-                                        (usuarioLogueado && usuarioLogueado.rol && (usuarioLogueado.rol.rolName == RolName.ADMIN || usuarioLogueado.rol.rolName == RolName.COCINERO)) &&
+                                        (usuarioLogueado && usuarioLogueado.rol && (usuarioLogueado.rol.rolName == RolName.ADMIN
+                                            || usuarioLogueado.rol.rolName == RolName.COCINERO
+                                            || usuarioLogueado.rol.rolName == RolName.DELIVERY)) &&
                                         <>
                                             <Button variant="outline-warning" style={{ maxHeight: "40px", marginRight: '10px' }}
                                                 onClick={() => { setSelectedId(articulomanufacturado.id); handleOpenEdit(); }}>Modificar</Button>

@@ -33,7 +33,7 @@ export function GrillaPedido() {
         let datos: PedidoCliente[] = []
         if (usuarioLogueado && usuarioLogueado.rol.rolName == RolName.CLIENTE) {
             datos = await getPedidosByCliente(usuarioLogueado.cliente.id)
-        } else if (usuarioLogueado && usuarioLogueado.rol.rolName == RolName.COCINERO) {
+        } else if (usuarioLogueado && (usuarioLogueado.rol.rolName == RolName.COCINERO || usuarioLogueado.rol.rolName == RolName.DELIVERY)) {
             datos = await getPedidosByCocinero()
         } else if (eliminados) {
             datos = await getPedidosCancelados();
@@ -98,7 +98,7 @@ export function GrillaPedido() {
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'top', flexDirection: 'column', alignItems: 'center', minHeight: '100vh' }}>
-                <h1 style={{ marginTop: '20px', color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: '15px 15px' }}>{listos ? "Pedidos Listos" : eliminados ? "Pedidos Cancelados" : "Pedidos"}</h1>
+                <h1 style={{ marginTop: '20px', color: "whitesmoke", backgroundColor: 'rgba(0, 0, 0, 0.8)', borderRadius: '15px', padding: '15px 15px' }}>{listos ? "Pedidos Listos" : eliminados ? "Pedidos Cancelados" : "Pedidos"}</h1>
 
                 <div style={{ width: '100%', display: "flex", justifyContent: 'flex-end' }}>
                     <Button size="lg" style={{ margin: 10, backgroundColor: '#EE7F46', border: '#EE7F46' }} onClick={() => { setListos(!listos), setEliminados(false) }}>
