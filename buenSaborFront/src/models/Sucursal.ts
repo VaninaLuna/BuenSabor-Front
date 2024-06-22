@@ -9,8 +9,10 @@ export default class Sucursal {
     horarioApertura: string = "";
     horarioCierre: string = "";
     casaMatriz: boolean = false;
+    url: string = "";
     domicilio: Domicilio = new Domicilio();
     empresa: Empresa = new Empresa();
     categorias?: Categoria[] = [];
     promociones?: Promocion[] = [];
+
 }
