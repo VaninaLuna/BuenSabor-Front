@@ -234,7 +234,7 @@ export function Carrito({ visible, setVisible }: { visible: boolean, setVisible:
                             {pedidoGuardado && pedidoGuardado.id > 0 && formaPago === 'mp' ? (
                                 <CheckoutMP pedido={pedidoGuardado} tipoDePago={formaPago} tipoDeEnvio={tipoEnvio} />
                             ) : (
-                                (usuarioLogueado && usuarioLogueado.rol) && (
+                                (usuarioLogueado && usuarioLogueado.rol) ? (
                                     <>
                                         <Form>
                                             <Form.Group className="d-flex" style={{ justifyContent: 'space-evenly', marginTop: '50px', marginBottom: '50px' }}>
@@ -261,7 +261,7 @@ export function Carrito({ visible, setVisible }: { visible: boolean, setVisible:
                                         </Form>
                                         <button onClick={guardarPedido}> Generar Pedido </button>
                                     </>
-                                )
+                                ) : <h5>Para realizar un pedido Inicie Sesion</h5>
                             )}
 
                             <ModalMensaje
