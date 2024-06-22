@@ -4,6 +4,7 @@ import { deleteSucursalPorId, getSucursales } from "../../services/SucursalApi";
 import { Button, FormControl, Table } from "react-bootstrap";
 import { ModalSucursal } from "./ModalSucursal";
 import { ModalCategorias } from "./ModalCategorias";
+import { ModalAgregarPromociones } from "./ModalAgregarPromociones";
 
 export function GrillaSucursal() {
 
@@ -13,22 +14,24 @@ export function GrillaSucursal() {
     const [selectedSucursal, setSelectedSucursal] = useState<Sucursal>(new Sucursal());
     const [selectedIdEmpresa, setSelectedIdEmpresa] = useState<number>(0);
     const [onlyShowCategorias, setOnlyShowCategorias] = useState(false);
+    const [onlyShowPromociones, setOnlyShowPromociones] = useState(false);
 
     const [sucursales, setSucursales] = useState<Sucursal[]>([]);
     const [filtro, setFiltro] = useState('');
 
     const [showModalCategorias, setShowModalCategorias] = useState(false);
+    const [showModalAgregarArticulos, setShowModalAgregarArticulos] = useState(false);
 
     const getListadoSucursales = async () => {
         const datos: Sucursal[] = await getSucursales();
         setSucursales(datos);
     };
 
-    const handleOpenCreate = () => {
-        setShowModal(true);
-        setEditing(false);
-        setSelectedId(null);
-    };
+    // const handleOpenCreate = () => {
+    //     setShowModal(true);
+    //     setEditing(false);
+    //     setSelectedId(null);
+    // };
 
     const handleOpenEdit = () => {
         setShowModal(true);
@@ -40,10 +43,15 @@ export function GrillaSucursal() {
         setEditing(false);
         setSelectedId(null);
         setShowModalCategorias(false);
+        setShowModalAgregarArticulos(false);
     };
 
     const handleShowCategorias = () => {
         setShowModalCategorias(true);
+    };
+
+    const handleShowPromociones = () => {
+        setShowModalAgregarArticulos(true);
     };
 
     const deleteSucursal = async (idSucursal: number) => {
@@ -82,6 +90,12 @@ export function GrillaSucursal() {
                     showModalCategorias={showModalCategorias}
                     handleClose={handleClose}
                 />
+                <ModalAgregarPromociones
+                    onlyShowPromociones={onlyShowPromociones}
+                    selectedSucursal={selectedSucursal}
+                    showModalAgregarPromociones={showModalAgregarArticulos}
+                    handleClose={handleClose}
+                />
                 <br />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <FormControl
@@ -90,9 +104,9 @@ export function GrillaSucursal() {
                         onChange={handleFilterChange}
                         style={{ margin: 20, width: '300px', height: '50px' }}
                     />
-                    <Button size="lg" style={{ margin: 20, backgroundColor: '#EE7F46', border: '#EE7F46' }} onClick={handleOpenCreate}>
+                    {/* <Button size="lg" style={{ margin: 20, backgroundColor: '#EE7F46', border: '#EE7F46' }} onClick={handleOpenCreate}>
                         Crear Sucursal
-                    </Button>
+                    </Button> */}
                 </div>
 
                 <Table striped bordered hover size="sm">
@@ -106,6 +120,7 @@ export function GrillaSucursal() {
                             <th>Localidad</th>
                             <th>Provincia</th>
                             <th style={{ width: "180px" }}>Categoria</th>
+                            <th style={{ width: "180px" }}>Promociones</th>
                             <th style={{ width: "200px" }}>Opciones</th>
                         </tr>
                     </thead>
@@ -124,6 +139,12 @@ export function GrillaSucursal() {
                                         onClick={() => { setSelectedSucursal(sucursal); handleShowCategorias(); setOnlyShowCategorias(false) }}>Agregar</Button>
                                     <Button variant="outline-info" style={{ maxHeight: "40px" }}
                                         onClick={() => { setSelectedSucursal(sucursal); handleShowCategorias(); setOnlyShowCategorias(true) }}>Ver</Button>
+                                </td>
+                                <td>
+                                    <Button variant="outline-primary" style={{ maxHeight: "40px", marginRight: '10px' }}
+                                        onClick={() => { setSelectedSucursal(sucursal); handleShowPromociones(); setOnlyShowPromociones(false) }}>Agregar</Button>
+                                    <Button variant="outline-info" style={{ maxHeight: "40px" }}
+                                        onClick={() => { setSelectedSucursal(sucursal); handleShowPromociones(); setOnlyShowPromociones(true) }}>Ver</Button>
                                 </td>
                                 <td>
                                     <Button variant="outline-warning" style={{ maxHeight: "40px", marginRight: '10px' }}
