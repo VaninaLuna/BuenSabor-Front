@@ -125,12 +125,12 @@ export function SidebarAdmin({ rolName }: { rolName: RolName }) {
                         </CNavItem>
                     </>
                 }
-                {/* <CNavItem>
+                <CNavItem>
                     <NavLink to="/promociones" className="nav-link">
                         <span className="nav-icon"><span className="nav-icon-bullet"></span></span>
                         Promociones
                     </NavLink>
-                </CNavItem> */}
+                </CNavItem>
             </CNavGroup>
 
             {

@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { ModalPromociones } from "./ModalPromociones";
+import Promocion from "../../models/Promocion";
+import { deletePromocionPorID, getPromociones } from "../../services/PromocionApi";
+import { RolName } from "../../models/RolName";
+import { UsuarioCliente } from "../../models/Usuario";
 export function Promociones() {
+
+    const [promociones, setPromociones] = useState<Promocion[]>([]);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [jsonUsuario] = useState<any>(localStorage.getItem('usuario'));
+    const usuarioLogueado: UsuarioCliente = JSON.parse(jsonUsuario) as UsuarioCliente;
 
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(false);
@@ -13,11 +23,34 @@ export function Promociones() {
         setEditing(false);
         setSelectedId(null);
     };
+
+    const handleOpenEdit = () => {
+        setShowModal(true);
+        setEditing(true);
+    };
+
     const handleClose = () => {
         setShowModal(false);
         setEditing(false);
         setSelectedId(null);
     };
+
+
+    const getListadoPromociones = async () => {
+        const datos: Promocion[] = await getPromociones();
+        setPromociones(datos);
+
+    };
+
+    const deletePromocion = async (id: number) => {
+        await deletePromocionPorID(id);
+        getListadoPromociones();
+    };
+
+    useEffect(() => {
+        getListadoPromociones();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
@@ -28,6 +61,7 @@ export function Promociones() {
                     showModal={showModal}
                     editing={editing}
                     selectedId={selectedId}
+                    getListadoPromociones={getListadoPromociones}
                 />
                 <Button size="lg" style={{ margin: 20, backgroundColor: '#EE7F46', border: '#EE7F46' }} onClick={handleOpenCreate}>
                     Crear Promocion
@@ -49,14 +83,24 @@ export function Promociones() {
                         </tr>
                     </thead>
                     <tbody style={{ background: "whitesmoke" }}>
-                        {/* <td>Cerveza 2x1</td>
-                        <td>20/06</td>
-                        <td>30/06</td>
-                        <td>17:00</td>
-                        <td>21:00</td>
-                        <td>2X1 en cerveza tirada</td>
-                        <td>$2000</td>
-                        <td>Happy hour</td> */}
+                        {promociones.map((promocion: Promocion, index) =>
+                            <tr key={index}>
+                                <td>{promocion.denominacion}</td>
+                                <td>{promocion.fechaDesde}</td>
+                                <td>{promocion.fechaHasta}</td>
+                                <td>{promocion.horaDesde}</td>
+                                <td>{promocion.horaHasta}</td>
+                                <td>{promocion.descripcionDescuento}</td>
+                                <td>{promocion.precioPromocional}</td>
+                                <td>{promocion.tipoPromocion}</td>
+                                {usuarioLogueado && usuarioLogueado.rol && usuarioLogueado.rol.rolName === RolName.ADMIN &&
+                                    <td>
+                                        <Button variant="outline-warning" style={{ maxHeight: "40px", marginRight: '10px' }} onClick={() => { setSelectedId(promocion.id); handleOpenEdit(); }}>Modificar</Button>
+                                        <Button variant="outline-danger" style={{ maxHeight: "40px" }} onClick={() => deletePromocion(promocion.id)}>Eliminar</Button>
+                                    </td>
+                                }
+                            </tr>
+                        )}
                     </tbody>
                 </Table>
             </div>
