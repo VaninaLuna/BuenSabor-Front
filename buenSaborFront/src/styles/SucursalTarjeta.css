@@ -1,0 +1,18 @@
+.card-img {
+    flex: 0 0 auto;
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.sucursal {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+  
+.sucursal:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.04); 
+    transition: transform 0.5s ease;
+}
