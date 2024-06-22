@@ -157,6 +157,30 @@ export const ModalSucursal: React.FC<ModalProps> = ({ showModal, handleCloseSucu
             setTxtValidacion("Debe ingresar una imagen");
             return;
         }
+        if (domicilio?.calle === undefined || domicilio.calle === "") {
+            setTxtValidacion("Debe ingresar una calle");
+            return;
+        }
+        if (domicilio?.numero === undefined || domicilio.numero === 0) {
+            setTxtValidacion("Debe ingresar un numero");
+            return;
+        }
+        if (domicilio?.cp === undefined || domicilio.cp === 0) {
+            setTxtValidacion("Debe ingresar un cp");
+            return;
+        }
+        if (localidadSeleccionada?.nombre === undefined || localidadSeleccionada.nombre === "") {
+            setTxtValidacion("Debe ingresar una localidad");
+            return;
+        }
+        if (paisSeleccionado?.nombre === undefined || paisSeleccionado.nombre === "") {
+            setTxtValidacion("Debe ingresar un pais");
+            return;
+        }
+        if (provinciaSeleccionada?.nombre === undefined || provinciaSeleccionada.nombre === "") {
+            setTxtValidacion("Debe ingresar una provincia");
+            return;
+        }
 
         const empresa = await getEmpresaPorID(selectedIdEmpresa)
         const sucursalActualizado = { ...sucursal };
@@ -204,7 +228,7 @@ export const ModalSucursal: React.FC<ModalProps> = ({ showModal, handleCloseSucu
                         <Col>
                             <Form.Group className="mb-3">
                                 <Form.Label>Url de la Imagen</Form.Label>
-                                <Form.Control type="text" name="imagen" value={sucursal?.url} onChange={handleInputChange} />
+                                <Form.Control type="text" name="url" value={sucursal?.url} onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
                     </Row>
