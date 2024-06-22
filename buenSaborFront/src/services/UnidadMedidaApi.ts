@@ -1,10 +1,10 @@
 import UnidadMedida from "../models/UnidadMedida";
 
 export async function getUnidadesMedidas() {
-    const INSTRUMENTOS_ENDPOINT = 'http://localhost:9000/unidadMedida/all';
+    const ENDPOINT = 'http://localhost:9000/unidadMedida/all';
 
     try {
-        const response = await fetch(INSTRUMENTOS_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -18,10 +18,10 @@ export async function getUnidadesMedidas() {
 }
 
 export async function getUnidadMedidaPorID(id: number) {
-    const INSTRUMENTO_ENDPOINT = `http://localhost:9000/unidadMedida/${id}`;
+    const ENDPOINT = `http://localhost:9000/unidadMedida/${id}`;
 
     try {
-        const response = await fetch(INSTRUMENTO_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -54,10 +54,10 @@ export async function saveUnidadMedida(unidadMedida?: UnidadMedida) {
 
 //DELETE
 export async function deleteUnidadMedidaPorID(id: number) {
-    const DELETE_INSTRUMENTO_ENDPOINT = `http://localhost:9000/unidadMedida/${id}`
+    const DELETE_ENDPOINT = `http://localhost:9000/unidadMedida/${id}`
 
     try {
-        const response = await fetch(DELETE_INSTRUMENTO_ENDPOINT, {
+        const response = await fetch(DELETE_ENDPOINT, {
             method: 'DELETE',
         });
 

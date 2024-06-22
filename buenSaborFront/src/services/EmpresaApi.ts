@@ -1,10 +1,10 @@
 import Empresa from "../models/Empresa";
 
 export async function getEmpresas() {
-    const INSTRUMENTOS_ENDPOINT = 'http://localhost:9000/empresa/all';
+    const ENDPOINT = 'http://localhost:9000/empresa/all';
 
     try {
-        const response = await fetch(INSTRUMENTOS_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -18,10 +18,10 @@ export async function getEmpresas() {
 }
 
 export async function getEmpresaPorID(id: number) {
-    const INSTRUMENTO_ENDPOINT = `http://localhost:9000/empresa/${id}`;
+    const ENDPOINT = `http://localhost:9000/empresa/${id}`;
 
     try {
-        const response = await fetch(INSTRUMENTO_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -55,10 +55,10 @@ export async function saveEmpresa(empresa?: Empresa) {
 
 //DELETE
 export async function deleteEmpresaPorID(id: number) {
-    const DELETE_INSTRUMENTO_ENDPOINT = `http://localhost:9000/empresa/${id}`
+    const DELETE_ENDPOINT = `http://localhost:9000/empresa/${id}`
 
     try {
-        const response = await fetch(DELETE_INSTRUMENTO_ENDPOINT, {
+        const response = await fetch(DELETE_ENDPOINT, {
             method: 'DELETE',
         });
 

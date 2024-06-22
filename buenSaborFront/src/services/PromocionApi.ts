@@ -2,10 +2,10 @@ import Promocion from "../models/Promocion";
 
 //GET
 export async function getPromociones() {
-    const INSTRUMENTOS_ENDPOINT = 'http://localhost:9000/promociones/all';
+    const ENDPOINT = 'http://localhost:9000/promociones/all';
 
     try {
-        const response = await fetch(INSTRUMENTOS_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -19,10 +19,10 @@ export async function getPromociones() {
 }
 
 export async function getPromocionPorID(id: number) {
-    const INSTRUMENTO_ENDPOINT = `http://localhost:9000/promociones/${id}`;
+    const ENDPOINT = `http://localhost:9000/promociones/${id}`;
 
     try {
-        const response = await fetch(INSTRUMENTO_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -56,10 +56,10 @@ export async function savePromocion(promocion?: Promocion) {
 
 //DELETE
 export async function deletePromocionPorID(id: number) {
-    const DELETE_INSTRUMENTO_ENDPOINT = `http://localhost:9000/promociones/${id}`
+    const DELETE_ENDPOINT = `http://localhost:9000/promociones/${id}`
 
     try {
-        const response = await fetch(DELETE_INSTRUMENTO_ENDPOINT, {
+        const response = await fetch(DELETE_ENDPOINT, {
             method: 'DELETE',
         });
 

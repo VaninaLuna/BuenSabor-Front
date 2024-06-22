@@ -1,10 +1,10 @@
 import Categoria from "../models/Categoria";
 
 export async function getCategorias() {
-    const INSTRUMENTOS_ENDPOINT = 'http://localhost:9000/categoria/all';
+    const ENDPOINT = 'http://localhost:9000/categoria/all';
 
     try {
-        const response = await fetch(INSTRUMENTOS_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -18,10 +18,10 @@ export async function getCategorias() {
 }
 
 export async function getArbolCategorias() {
-    const INSTRUMENTOS_ENDPOINT = 'http://localhost:9000/categoria/arbol';
+    const ENDPOINT = 'http://localhost:9000/categoria/arbol';
 
     try {
-        const response = await fetch(INSTRUMENTOS_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -35,10 +35,10 @@ export async function getArbolCategorias() {
 }
 
 export async function getCategoriaPorID(id: number) {
-    const INSTRUMENTO_ENDPOINT = `http://localhost:9000/categoria/${id}`;
+    const ENDPOINT = `http://localhost:9000/categoria/${id}`;
 
     try {
-        const response = await fetch(INSTRUMENTO_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -52,10 +52,10 @@ export async function getCategoriaPorID(id: number) {
 }
 
 export async function getCategoriaPadreDesdeHijo(id: number) {
-    const INSTRUMENTO_ENDPOINT = `http://localhost:9000/categoria/padre/${id}`;
+    const ENDPOINT = `http://localhost:9000/categoria/padre/${id}`;
 
     try {
-        const response = await fetch(INSTRUMENTO_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);

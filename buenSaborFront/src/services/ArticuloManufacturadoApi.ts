@@ -2,10 +2,10 @@ import ArticuloManufacturado from "../models/ArticuloManufacturado";
 
 //GET
 export async function getArticulosManufacturados() {
-    const INSTRUMENTOS_ENDPOINT = 'http://localhost:9000/articuloManufacturado/esta_eliminado/false';
+    const ENDPOINT = 'http://localhost:9000/articuloManufacturado/esta_eliminado/false';
 
     try {
-        const response = await fetch(INSTRUMENTOS_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -19,10 +19,10 @@ export async function getArticulosManufacturados() {
 }
 
 export async function getArticuloManufacturadoPorID(id: number) {
-    const INSTRUMENTO_ENDPOINT = `http://localhost:9000/articuloManufacturado/${id}`;
+    const ENDPOINT = `http://localhost:9000/articuloManufacturado/${id}`;
 
     try {
-        const response = await fetch(INSTRUMENTO_ENDPOINT);
+        const response = await fetch(ENDPOINT);
 
         if (!response.ok) {
             throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
@@ -61,10 +61,10 @@ export async function saveArticuloManufacturado(articuloManufacturado?: Articulo
 
 //DELETE
 export async function deleteArticuloManufacturadoPorID(id: number) {
-    const DELETE_INSTRUMENTO_ENDPOINT = `http://localhost:9000/articuloManufacturado/${id}`
+    const DELETE_ENDPOINT = `http://localhost:9000/articuloManufacturado/${id}`
 
     try {
-        const response = await fetch(DELETE_INSTRUMENTO_ENDPOINT, {
+        const response = await fetch(DELETE_ENDPOINT, {
             method: 'DELETE',
         });
 
