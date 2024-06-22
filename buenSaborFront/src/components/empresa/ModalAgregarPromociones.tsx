@@ -81,7 +81,7 @@ export const ModalAgregarPromociones: React.FC<ModalProps> = ({ onlyShowPromocio
             aria-labelledby="contained-modal-title-vcenter"
             centered>
             <Modal.Header style={{ backgroundColor: 'gainsboro' }} closeButton>
-                <Modal.Title>Categorias</Modal.Title>
+                <Modal.Title>Promociones</Modal.Title>
             </Modal.Header>
 
             <Modal.Body style={{ backgroundColor: 'gainsboro' }}>
