@@ -80,7 +80,9 @@ export function Promociones() {
                             <th>Descripcion de descuento</th>
                             <th>Precio Promocional</th>
                             {/* <th>Tipo de Promocion</th> */}
-                            <th>Opciones</th>
+                            {usuarioLogueado && usuarioLogueado.rol && usuarioLogueado.rol.rolName === RolName.ADMIN &&
+                                <th>Opciones</th>
+                            }
                         </tr>
                     </thead>
                     <tbody style={{ background: "whitesmoke" }}>
