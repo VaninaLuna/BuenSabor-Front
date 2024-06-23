@@ -19,7 +19,7 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
 
     const [promocion, setPromocion] = useState<Promocion>(new Promocion());
     const [txtValidacion, setTxtValidacion] = useState<string>("");
-    const [tipoPromocion] = useState<string[]>(["HappyHour", "Promocion"])
+    // const [tipoPromocion] = useState<string[]>(["HappyHour", "Promocion"])
     const [imagenes, setImagenes] = useState<string[]>(['']);
 
     const [showModalAgregar, setShowModalAgregar] = useState(false);
@@ -93,10 +93,10 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
             setTxtValidacion("El precio promocional debe ser mayor que cero.");
             return false;
         }
-        if (!promocion.tipoPromocion || promocion.tipoPromocion === "0") {
-            setTxtValidacion("Debe seleccionar un tipo de promoción.");
-            return false;
-        }
+        // if (!promocion.tipoPromocion || promocion.tipoPromocion === "0") {
+        //     setTxtValidacion("Debe seleccionar un tipo de promoción.");
+        //     return false;
+        // }
 
         setTxtValidacion(""); // Limpia el mensaje de validación si todo es válido
         return true;
@@ -243,7 +243,7 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
                                 <Form.Control type="number" name="precioPromocional" value={promocion.precioPromocional} onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
-                        <Col>
+                        {/* <Col>
                             <Form.Group className="mb-3">
                                 <Form.Label>Tipo de Promocion</Form.Label>
                                 <Form.Select
@@ -261,7 +261,7 @@ export const ModalPromociones: React.FC<ModalProps> = ({ showModal, handleClose,
                                 </Form.Select>
 
                             </Form.Group>
-                        </Col>
+                        </Col> */}
                     </Row>
 
                     {promocion.promocionDetalles.map((detalle, index) => (

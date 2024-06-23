@@ -79,7 +79,7 @@ export function Promociones() {
                             <th>Hora Hasta</th>
                             <th>Descripcion de descuento</th>
                             <th>Precio Promocional</th>
-                            <th>Tipo de Promocion</th>
+                            {/* <th>Tipo de Promocion</th> */}
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -98,7 +98,7 @@ export function Promociones() {
                                 <td>{promocion.horaHasta}</td>
                                 <td>{promocion.descripcionDescuento}</td>
                                 <td>{promocion.precioPromocional}</td>
-                                <td>{promocion.tipoPromocion}</td>
+                                {/* <td>{promocion.tipoPromocion}</td> */}
                                 {usuarioLogueado && usuarioLogueado.rol && usuarioLogueado.rol.rolName === RolName.ADMIN &&
                                     <td>
                                         <Button variant="outline-warning" style={{ maxHeight: "40px", marginRight: '10px' }} onClick={() => { setSelectedId(promocion.id); handleOpenEdit(); }}>Modificar</Button>
