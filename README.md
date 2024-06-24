@@ -1,6 +1,6 @@
 # Buen Sabor
 
-Integrantes: Penissi Enzo, Sepulveda Pablo y Luna Vanina
+Integrantes: Pennisi Enzo, Sepulveda Pablo y Luna Vanina
 
 ## Usuarios
 
