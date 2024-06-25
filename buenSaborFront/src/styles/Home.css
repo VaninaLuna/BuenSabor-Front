@@ -80,3 +80,21 @@
   border-radius: 10px;
   display: inline-block;
 }
+
+.footer-container {
+  position: absolute;
+  text-align: center;
+  height: 500px;
+  width: 100%;
+  background-color: rgb(224, 224, 224);
+}
+
+.img-profile {
+  max-width: 210px;
+  max-height: 210px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 25px
+}
